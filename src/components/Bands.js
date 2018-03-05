@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react"
 
 class Bands extends Component {
-  render(){
-    return (
-      <div>
-        band input
-      </div>
-    );
+  bandList = () =>
+    this.props.store.getState().bands.map((band, index) => {
+      return <li key={index}>{band}</li>
+    })
+  render() {
+    return <ul>{this.bandList}</ul>
   }
-};
+}
 
-export default Bands;
+export default Bands
