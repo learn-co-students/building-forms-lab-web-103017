@@ -10,8 +10,7 @@ export default function createStore(reducer) {
       console.log(action)
       console.log(`the state is`)
       console.log(state)
-    }
-    renderer.render()
+    } else renderer.render()
   }
 
   function getState() {

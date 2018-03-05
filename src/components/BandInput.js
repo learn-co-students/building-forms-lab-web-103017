@@ -3,26 +3,38 @@ import React, { Component } from "react"
 class BandInput extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
-      input: ""
+      text: ""
     }
   }
 
-  handleInput = event => {
-    this.setState({ input: event.target.value })
+  handleOnChange(event) {
+    this.setState({
+      text: event.target.value
+    })
   }
 
-  handleSubmit = event => {
+  handleOnSubmit(event) {
     event.preventDefault()
-    this.props.store.dispatch({ type: "ADD_BAND", bands: this.state.input })
-    this.setState({ input: "" })
+    this.props.store.dispatch({
+      type: "ADD_BAND",
+      band: this.state.text
+    })
+    this.setState({
+      text: ""
+    })
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleInput} />
+        <form onSubmit={event => this.handleOnSubmit(event)}>
+          <input
+            type="text"
+            value={this.state.text}
+            onChange={event => this.handleOnChange(event)}
+          />
           <input type="submit" />
         </form>
       </div>
